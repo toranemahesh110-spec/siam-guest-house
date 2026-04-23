@@ -1,0 +1,24 @@
+{
+  "overview": "Premium luxury hotel website for Siam Guest House Pattaya — featuring cinematic hero sections, room showcase, gallery lightbox, and a booking form, styled with an elegant Elyse Residence-inspired aesthetic.",
+  "features": [
+    "Glassmorphism sticky navbar",
+    "Fullscreen cinematic hero with scroll indicator",
+    "Featured rooms with hover zoom",
+    "Lightbox gallery with keyboard and swipe navigation",
+    "Multi-step booking form with validation",
+    "Testimonials slider",
+    "Luxury amenities section",
+    "Scroll-triggered fade-in animations",
+    "Fully responsive on desktop, tablet, and mobile"
+  ],
+  "category": "hospitality",
+  "tags": [
+    "hotel",
+    "luxury",
+    "hospitality",
+    "booking",
+    "gallery",
+    "responsive"
+  ],
+  "last_updated": "2026-04-23T10:33:16.198Z"
+}

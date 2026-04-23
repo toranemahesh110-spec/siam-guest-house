@@ -1,0 +1,286 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-display: "Playfair Display";
+    --font-body: "Poppins";
+    --font-mono: "Geist Mono";
+    --radius: 0.75rem;
+
+    /* White #FFFFFF → oklch(1 0 0) */
+    --background: 1 0 0;
+    /* Charcoal #1A1A1A → oklch(0.15 0 0) */
+    --foreground: 0.15 0 0;
+    /* Soft Beige #F5E6D3 → oklch(0.93 0.025 70) */
+    --card: 0.93 0.025 70;
+    --card-foreground: 0.15 0 0;
+    --popover: 1 0 0;
+    --popover-foreground: 0.15 0 0;
+
+    /* Charcoal as primary */
+    --primary: 0.15 0 0;
+    --primary-foreground: 1 0 0;
+
+    /* Beige as secondary */
+    --secondary: 0.93 0.025 70;
+    --secondary-foreground: 0.15 0 0;
+    --muted: 0.95 0.015 70;
+    --muted-foreground: 0.45 0 0;
+
+    /* Gold #D4AF37 → oklch(0.74 0.118 80) */
+    --accent: 0.74 0.118 80;
+    --accent-foreground: 0.1 0 0;
+
+    --destructive: 0.55 0.22 25;
+    --destructive-foreground: 1 0 0;
+
+    --border: 0.88 0.015 70;
+    --input: 0.88 0.015 70;
+    --ring: 0.74 0.118 80;
+
+    --chart-1: 0.74 0.118 80;
+    --chart-2: 0.6 0.08 45;
+    --chart-3: 0.5 0.05 260;
+    --chart-4: 0.7 0.1 85;
+    --chart-5: 0.65 0.09 40;
+
+    --sidebar: 1 0 0;
+    --sidebar-foreground: 0.15 0 0;
+    --sidebar-primary: 0.74 0.118 80;
+    --sidebar-primary-foreground: 0.1 0 0;
+    --sidebar-accent: 0.93 0.025 70;
+    --sidebar-accent-foreground: 0.15 0 0;
+    --sidebar-border: 0.88 0.015 70;
+    --sidebar-ring: 0.74 0.118 80;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+    font-weight: 300;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display), serif;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display), serif;
+  }
+  .font-body {
+    font-family: var(--font-body), sans-serif;
+  }
+
+  .transition-smooth {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Glassmorphism navbar */
+  .glass-nav {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    background: rgba(255, 255, 255, 0.82);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+  }
+
+  .glass-nav-dark {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    background: rgba(26, 26, 26, 0.85);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+  }
+
+  /* Card hover with zoom */
+  .card-hover {
+    @apply transition-smooth overflow-hidden;
+  }
+
+  .card-hover:hover .card-image {
+    transform: scale(1.06);
+  }
+
+  .card-image {
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+  }
+
+  /* Luxury button */
+  .luxury-button {
+    @apply px-8 py-3 rounded-full font-body font-medium text-sm tracking-widest uppercase transition-smooth;
+    background: oklch(var(--accent));
+    color: oklch(var(--accent-foreground));
+    letter-spacing: 0.12em;
+  }
+
+  .luxury-button:hover {
+    background: oklch(0.68 0.12 80);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 25px oklch(0.74 0.118 80 / 0.3);
+  }
+
+  .luxury-button-outline {
+    @apply px-8 py-3 rounded-full font-body font-medium text-sm tracking-widest uppercase transition-smooth border;
+    border-color: oklch(var(--accent));
+    color: oklch(var(--accent));
+    background: transparent;
+  }
+
+  .luxury-button-outline:hover {
+    background: oklch(var(--accent));
+    color: oklch(var(--accent-foreground));
+    transform: translateY(-1px);
+  }
+
+  .luxury-button-light {
+    @apply px-8 py-3 rounded-full font-body font-medium text-sm tracking-widest uppercase transition-smooth border border-white/60;
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    backdrop-filter: blur(8px);
+  }
+
+  .luxury-button-light:hover {
+    background: rgba(255, 255, 255, 0.28);
+    transform: translateY(-1px);
+  }
+
+  /* Accent line decoration */
+  .accent-line {
+    @apply h-px w-16 bg-accent;
+  }
+
+  .accent-line-v {
+    @apply w-px h-16 bg-accent;
+  }
+
+  /* Scroll fade animations */
+  .scroll-fade {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  }
+
+  .scroll-fade.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .scroll-fade-left {
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  }
+
+  .scroll-fade-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .scroll-fade-right {
+    opacity: 0;
+    transform: translateX(30px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  }
+
+  .scroll-fade-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* Gold text */
+  .text-gold {
+    color: oklch(var(--accent));
+  }
+
+  /* Subtle text shadow for hero overlay */
+  .text-hero-shadow {
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Lightbox overlay */
+  .lightbox-overlay {
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(4px);
+  }
+}
+
+/* ─── Keyframe animations ─── */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-slow {
+  from {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes scroll-hint {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(6px);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes zoom-in {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes testimonial-fade {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
